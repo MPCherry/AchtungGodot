@@ -4,7 +4,8 @@ extends Area2D
 func transfer(tail):
 	$Line2D.add_point(tail.get_node("Line2D").points[1])
 	var length = $Line2D.points[-2].distance_to($Line2D.points[-1])
-	if length < 0.001:
+	# ONLY CHECKS AT END OF TRANSFER, ACTUALLY NEED TO REMOVE AT GAP TIME
+	if length < 2:
 		return
 	var new_shape = CollisionShape2D.new()
 	new_shape.position = tail.get_child(1).position

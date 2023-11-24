@@ -1,13 +1,13 @@
 extends Area2D
 
-var following = true
+var following = false
 
 func sync_current_collision_body():
 	var last_child = get_child(get_child_count()-1)
 	last_child.position = ($Line2D.points[-2] + $Line2D.points[-1]) / 2
 	last_child.rotation = $Line2D.points[-2].direction_to($Line2D.points[-1]).angle()
 	var length = $Line2D.points[-2].distance_to($Line2D.points[-1])
-	last_child.shape.extents = Vector2(length / 2, 10)
+	last_child.shape.extents = Vector2(length / 2, 8)
 
 func _process(delta):
 	if following:
@@ -15,7 +15,7 @@ func _process(delta):
 
 func split():
 		var length = $Line2D.points[-2].distance_to($Line2D.points[-1])
-		if length > 0.001:
+		if length > 2:
 			$Line2D.add_point($Line2D.points[-1])
 			var new_shape = CollisionShape2D.new()
 			var rect = RectangleShape2D.new()
