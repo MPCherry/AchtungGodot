@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyndpkxiw3ch6"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_ous41"]
+[ext_resource type="Script" path="res://head.gd" id="1_spq80"]
+[ext_resource type="PackedScene" uid="uid://biyjpu11rmbu7" path="res://tail.tscn" id="3_6ymg6"]
+[ext_resource type="PackedScene" uid="uid://kjrbwo6y5ba5" path="res://static_tail.tscn" id="4_y2n73"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_67shk"]
+
+[node name="Player" type="Node2D"]
+position = Vector2(114, 72)
+script = ExtResource("1_ous41")
+
+[node name="BridgeLine2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 0, 0, 0)
+width = 20.0
+antialiased = true
+
+[node name="Head" type="Area2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_spq80")
+
+[node name="Polygon2D" type="Polygon2D" parent="Head"]
+polygon = PackedVector2Array(0, -10, 6, -8, 9, -4, 10, 0, 8, 6, 4, 9, 0, 10, -4, 9, -8, 6, -10, 0, -9, -4, -6, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
+shape = SubResource("CircleShape2D_67shk")
+
+[node name="Tail" parent="." instance=ExtResource("3_6ymg6")]
+
+[node name="StaticTail" parent="." instance=ExtResource("4_y2n73")]
+
+[node name="SplitTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="GapStartTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="GapEndTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="OldTails" type="Node" parent="."]
+
+[connection signal="area_entered" from="Head" to="." method="_on_head_area_entered"]
+[connection signal="turned" from="Head" to="." method="_on_head_turned"]
+[connection signal="timeout" from="SplitTimer" to="." method="_on_split_timer_timeout"]
+[connection signal="timeout" from="GapStartTimer" to="." method="_on_gap_start_timer_timeout"]
+[connection signal="timeout" from="GapEndTimer" to="." method="_on_gap_end_timer_timeout"]

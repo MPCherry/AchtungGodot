@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://1aqttarknmdw"]
+
+[ext_resource type="PackedScene" uid="uid://cyndpkxiw3ch6" path="res://player.tscn" id="1_v1a2f"]
+[ext_resource type="Script" path="res://FPSLabel.gd" id="2_7yed3"]
+
+[node name="Main" type="Node"]
+
+[node name="FPSLabel" type="Label" parent="."]
+offset_left = 10.0
+offset_top = 15.0
+offset_right = 50.0
+offset_bottom = 38.0
+script = ExtResource("2_7yed3")
+
+[node name="Player" parent="." instance=ExtResource("1_v1a2f")]
+position = Vector2(163, 158)
+rotation = 2.52549
+player_num = 2
+
+[node name="Player3" parent="." instance=ExtResource("1_v1a2f")]
+position = Vector2(883, 925)

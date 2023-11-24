@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://biyjpu11rmbu7"]
+
+[ext_resource type="Script" path="res://tail.gd" id="1_j3gvm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_752rb"]
+resource_local_to_scene = true
+
+[node name="Tail" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_j3gvm")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(2.08165e-12, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+width = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_752rb")
