@@ -1,6 +1,6 @@
 extends Area2D
 
-var following = false
+var following = true
 
 func sync_current_collision_body():
 	var last_child = get_child(get_child_count()-1)

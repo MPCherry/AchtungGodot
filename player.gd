@@ -9,6 +9,7 @@ extends Node
 var can_split = true
 var following = false
 var alive = true
+var started = false
 
 var player_colors = [
 	Color(253/255.0, 246/255.0, 227/255.0), # Base3 white
@@ -44,6 +45,12 @@ func _ready():
 
 
 func _process(delta):
+	if not started:
+		if Input.is_action_pressed("start_round"):
+			started = true
+			$StartTailTimer.start()
+			$Head.speed = speed
+		
 	if following:
 		$Tail.get_node("Line2D").points[-1] = $Head.position
 
@@ -132,8 +139,5 @@ func _on_start_tail_timer_timeout():
 	$Tail/Line2D.points[0] = $Head.position
 	$Tail/Line2D.points[1] = $Head.position
 	$StaticTail/Line2D.points[0] = $Head.position
+	$Tail.sync_current_collision_body()
 	$Head.set_collision_mask_value(player_num, true)
-
-
-func _on_start_moving_timer_timeout():
-	$Head.speed = speed

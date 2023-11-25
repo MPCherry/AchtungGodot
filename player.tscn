@@ -51,13 +51,8 @@ one_shot = true
 [node name="OldTails" type="Node" parent="."]
 
 [node name="StartTailTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 2.0
 one_shot = true
-autostart = true
-
-[node name="StartMovingTimer" type="Timer" parent="."]
-one_shot = true
-autostart = true
 
 [connection signal="area_entered" from="Head" to="." method="_on_head_area_entered"]
 [connection signal="outside" from="Head" to="." method="die"]
@@ -66,4 +61,3 @@ autostart = true
 [connection signal="timeout" from="GapStartTimer" to="." method="_on_gap_start_timer_timeout"]
 [connection signal="timeout" from="GapEndTimer" to="." method="_on_gap_end_timer_timeout"]
 [connection signal="timeout" from="StartTailTimer" to="." method="_on_start_tail_timer_timeout"]
-[connection signal="timeout" from="StartMovingTimer" to="." method="_on_start_moving_timer_timeout"]

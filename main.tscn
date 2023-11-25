@@ -42,8 +42,11 @@ rotation = -2.46615
 scale = Vector2(1, 1)
 player_num = 3
 
+[node name="Player4" parent="Players" instance=ExtResource("1_v1a2f")]
+player_num = 4
+
 [node name="RestartTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 3.0
 one_shot = true
 
 [node name="ScoreP1" type="Label" parent="."]
